@@ -2,7 +2,7 @@
     import { PUBLIC_API_URL } from '$env/static/public'
     import axios from "axios";
 
-    let apiUrl = PUBLIC_API_URL ?? "http://localhost:3001";
+    let apiUrl = import.meta.env.VITE_API_URL ?? PUBLIC_API_URL ?? "http://localhost:3001";
     let username: string = '';
     let roastingResult: string = '';
     let status : string = 'idle';
