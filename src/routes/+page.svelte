@@ -14,6 +14,7 @@
         if (!username) return;
         status = "loading";
         var datas = null;
+        var readmeResponse = { status: 404,data:null };
         try {
             var profileResponse = await axios.get(
                 `https://api.github.com/users/${username}`,
@@ -21,7 +22,7 @@
             const repoResponse = await axios.get(
                 `https://api.github.com/users/${username}/repos?sort=updated`,
             );
-            var readmeResponse = { status: 404 };
+            
             try {
                 readmeResponse = await axios.get(
                     `https://raw.githubusercontent.com/${username}/${username}/main/README.md`,
@@ -73,6 +74,7 @@
                 apiUrl + "/roast?username=" + username,
                 {
                     jsonData: JSON.stringify(datas),
+                    README:readmeResponse.data
                 },
             );
             roastingResult = geminiResponse.data.roasting;
