@@ -78,20 +78,20 @@
                 },
             );
             roastingResult = geminiResponse.data.roasting;
-        } catch (error) {
-            // console.error("Error fetching GitHub data", error);
+        } catch (error : any) {
+            console.error("Error : ", error);
             if(axios.isAxiosError(error)){
                 //get response from error
                 var responseData = error.response?.data;
                 if(responseData.type == "AI"){
                     roastingResult = "AI failed to return answer, the possibility of the response being too harsh or rude. please try again ...";
                 } else if(responseData.type == "Github"){
-                    roastingResult = "Error fetching GitHub data, probably has reached its limit. please try again later ...";
+                    roastingResult = "Error fetching GitHub data, "+responseData.error+". please try again later ...";
                 } else {
                     roastingResult = "Failed to fetch response, error in server : "+error.message;
                 }
             } else {
-                roastingResult = "Failed to fetch response, something wrong. please try again later ...";
+                roastingResult = `Failed to fetch response, something wrong : ${error?.message}. please try again later ...`;
             }
             
         }
