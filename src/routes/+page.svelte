@@ -18,7 +18,7 @@
 
         } catch (error) {
             console.error('Error fetching GitHub data', error);
-            roastingResult = 'Failed to fetch GitHub data. please try again ...';
+            roastingResult = 'Failed to fetch response, the possibility of the response being too harsh. please try again ...';
         }
         status = 'done';
     }
