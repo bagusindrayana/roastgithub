@@ -11,7 +11,7 @@
     let status: string = "idle";
 
     async function fetchGithubData() {
-        if (!username) return;
+        if (!username || status == "loading") return;
         status = "loading";
         var datas = null;
         var readmeResponse = { status: 404,data:null };
