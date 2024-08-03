@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { updated } from "$app/stores";
     import { PUBLIC_API_URL } from "$env/static/public";
     import axios from "axios";
 
@@ -42,6 +43,8 @@
                 followers: profileResponse.data.followers,
                 following: profileResponse.data.following,
                 public_repos: profileResponse.data.public_repos,
+                created_at: profileResponse.data.created_at,
+                updated_at: profileResponse.data.updated_at,
                 repositories: repoResponse.data
                     .map(
                         (repo: {
@@ -52,6 +55,8 @@
                             open_issues_count: any;
                             license: any;
                             fork: any;
+                            created_at: any;
+                            updated_at: any;
                         }) => ({
                             name: repo.name,
                             description: repo.description,
@@ -60,6 +65,8 @@
                             open_issues_count: repo.open_issues_count,
                             license: repo.license,
                             fork: repo.fork,
+                            created_at : repo.created_at,
+                            updated_at : repo.updated_at
                         }),
                     )
                     .slice(0, 50),
