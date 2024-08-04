@@ -227,6 +227,7 @@
         margin: auto;
         padding: 16px;
         text-align: center;
+        background-color: white;
     }
 
     #footer {
@@ -240,6 +241,7 @@
         margin: auto;
         padding: 16px;
         text-align: center;
+        background-color: white;
     }
 
     .input-group {
