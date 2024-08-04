@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { updated } from "$app/stores";
     import { PUBLIC_API_URL } from "$env/static/public";
     import axios from "axios";
 
@@ -123,6 +122,9 @@
         content="Roasting Your GitHub Profile with AI"/>
 </svelte:head>
 <main>
+    <div id="header">
+        <marquee style="color:red;">Siapkan mental anda sebelum menekan tombol submit, semua response digenerate oleh AI, bisa saja response yang diberikan sangat menyinggung anda.</marquee>
+    </div>
     <h1>GitHub Profile Roasting 🔥🔥🔥</h1>
 
     <div>
@@ -211,6 +213,19 @@
         background: #f4f4f4;
         padding: 1em;
         overflow-x: auto;
+    }
+
+    #header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding: 16px;
+        text-align: center;
     }
 
     #footer {
