@@ -81,6 +81,11 @@
         }
 
         try {
+            const headers = {
+                Origin:window.location.origin,
+                Referer:`${window.location.origin}/`
+            }
+            console.log(headers);
             // Send data to Gemini AI for roasting
             const geminiResponse = await axios.post<{ roasting: string }>(
                 apiUrl + "/roast?username=" + username,
@@ -90,6 +95,9 @@
                     model:model,
                     language:language
                 },
+                {
+                    headers:headers
+                }
             );
             roastingResult = geminiResponse.data.roasting;
         } catch (error: any) {
