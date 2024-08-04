@@ -12,6 +12,7 @@
     let language: string = "auto";
     let roastingResult: string = "";
     let status: string = "idle";
+    let apiKey:string = "";
 
     async function fetchGithubData() {
         if (!username || status == "loading") return;
@@ -88,7 +89,8 @@
                     jsonData: JSON.stringify(datas),
                     README: readmeResponse.data,
                     model:model,
-                    language:language
+                    language:language,
+                    apiKey:apiKey
                 },
             );
             roastingResult = geminiResponse.data.roasting;
@@ -146,8 +148,9 @@
             <label for="model">AI Model</label>
             <select bind:value={model} name="model" id="model">
                 <option value="gemini">Gemini AI</option>
-                <option value="llama">LLama</option>
+                <option value="llama">LLama (Groq AI)</option>
             </select>
+            <input type="password" bind:value={apiKey} placeholder="(Optional) API KEY...">
         </div>
     </details>
 
