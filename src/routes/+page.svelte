@@ -118,6 +118,9 @@
 
 <svelte:head>
     <title>GitHub Profile Roasting 🔥🔥🔥</title>
+    <meta
+        name="description"
+        content="Roasting Your GitHub Profile with AI"/>
 </svelte:head>
 <main>
     <h1>GitHub Profile Roasting 🔥🔥🔥</h1>
@@ -161,9 +164,10 @@
         <p>Loading...</p>
     {/if}
     <div id="footer">
-        <center>
+        <div>
             <p>Bantu Saya Bayar Tagihan GCP 😭</p>
-            <a href="https://trakteer.id/bagood" target="_blank"
+            <div class="btn-list">
+                <a href="https://trakteer.id/bagood" target="_blank"
                 ><img
                     id="wse-buttons-preview"
                     src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png?date=18-11-2023"
@@ -176,7 +180,10 @@
                     data-darkreader-inline-border-left=""
                 /></a
             >
-        </center>
+            <iframe src="https://ghbtns.com/github-btn.html?user=bagusindrayana&repo=roastgithub&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+            </div>
+        </div>
+        
     </div>
 </main>
 
@@ -216,6 +223,7 @@
         right: 0;
         margin: auto;
         padding: 16px;
+        text-align: center;
     }
 
     .input-group {
@@ -223,5 +231,12 @@
         display: flex;
         gap: 6px;
         flex-direction: column;
+    }
+
+    .btn-list {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        align-items: center;
     }
 </style>
