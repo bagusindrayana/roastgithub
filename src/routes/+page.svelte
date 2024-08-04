@@ -84,7 +84,7 @@
         try {
             // Send data to Gemini AI for roasting
             const geminiResponse = await axios.post<{ roasting: string }>(
-                apiUrl + "/roast?username=" + username,
+                apiUrl + "/roasting?username=" + username,
                 {
                     jsonData: JSON.stringify(datas),
                     README: readmeResponse.data,
