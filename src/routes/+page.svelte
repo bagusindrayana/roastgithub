@@ -91,7 +91,7 @@
                 //get response from error
                 var responseData = error.response?.data;
                 if(responseData.type == "AI"){
-                    roastingResult = "AI failed to return answer, the possibility of the response being too harsh or rude. please try again ...";
+                    roastingResult = "AI failed to return answer, the possibility of the response being too harsh or get limit. please try again ...";
                 } else if(responseData.type == "Github"){
                     roastingResult = "Error fetching GitHub data, "+responseData.error+". please try again later ...";
                 } else {
