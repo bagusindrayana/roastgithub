@@ -165,6 +165,7 @@
     {:else if status == "loading"}
         <p>Loading...</p>
     {/if}
+    <div style="height: 100px;"></div>
     <div id="footer">
         <div>
             <p>Bantu Saya Bayar Tagihan GCP 😭</p>
