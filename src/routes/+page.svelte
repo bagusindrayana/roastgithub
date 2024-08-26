@@ -168,7 +168,11 @@
     <div style="height: 100px;"></div>
     <div id="footer">
         <div>
-            <p>Bantu Saya Bayar Tagihan GCP 😭</p>
+            <div>
+                <a href="https://roastlinkedin.my.id" target="_blank">RoastLinkedin</a>
+                <a href="https://roastwaifu.my.id" target="_blank">RoastWaifu</a>
+            </div>
+            <br>
             <div class="btn-list">
                 <a href="https://trakteer.id/bagood" target="_blank"
                 ><img
