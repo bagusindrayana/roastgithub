@@ -219,18 +219,6 @@
     button {
         padding: 0.5em;
     }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin-bottom: 0.5em;
-    }
-    pre {
-        background: #f4f4f4;
-        padding: 1em;
-        overflow-x: auto;
-    }
 
     #header {
         display: flex;
