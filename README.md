@@ -1,7 +1,7 @@
 ## Local Development
 - Clone the repository
 - Run `npm install`
-- copy `.env.example` to `.env` and fill the required configuration
+- copy `.env.example` to `.env` and fill the required configuration (you can use multiple api key by seperate with comma)
 - Run `npm run dev`
 
 
