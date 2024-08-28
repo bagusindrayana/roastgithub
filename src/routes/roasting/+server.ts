@@ -45,7 +45,7 @@ export const POST: RequestHandler = async (event) => {
         error(429);
     }
 
-    const allowedOrigins = ['https://roastlinkedin.vercel.app', 'roastlinkedin.vercel.app','roastlinkedin.my.id','https://roastlinkedin.my.id'];
+    const allowedOrigins = ['https://roastgithub.vercel.app', 'roastgithub.vercel.app','roastgithub.my.id','https://roastgithub.my.id'];
     const origin = event.request.headers.get('origin');
     const headersCors: {
         'Access-Control-Allow-Methods': string;
