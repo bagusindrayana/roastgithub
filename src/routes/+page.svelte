@@ -169,6 +169,18 @@
     <div id="footer">
         <div>
             <div>
+                <a
+                href="https://wallofdonations.my.id"
+                class="underline"
+                target="_blank"
+            >
+                WallOfDonations
+            </a>
+            <a
+                href="https://roastgithub.my.id"
+                class="underline"
+                target="_blank">New RoastGithub</a
+            >
                 <a href="https://roastlinkedin.my.id" target="_blank">RoastLinkedin</a>
                 <a href="https://roastwaifu.my.id" target="_blank">RoastWaifu</a>
             </div>
