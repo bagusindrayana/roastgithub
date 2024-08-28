@@ -1,6 +1,10 @@
-Backend API repo : https://github.com/bagusindrayana/roastgithub-api
+# New Version
+- new version in branch `v2`
+- new version using sveltekit api so don't need to run backend api
+
 
 ## Local Development
+Backend API repo : https://github.com/bagusindrayana/roastgithub-api
 - Clone the repository
 - Run `npm install`
 - make .env file and add the following
