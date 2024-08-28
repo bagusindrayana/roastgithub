@@ -13,13 +13,20 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.41",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
+		"tailwindcss": "^3.4.10",
 		"typescript": "^5.0.0",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
 	"dependencies": {
-		"axios": "^1.7.3"
+		"@google/generative-ai": "^0.17.1",
+		"axios": "^1.7.5",
+		"groq-sdk": "^0.6.0",
+		"svelte-markdown": "^0.4.1",
+		"sveltekit-rate-limiter": "^0.5.2"
 	}
 }

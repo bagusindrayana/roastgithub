@@ -1,17 +1,15 @@
 <script lang="ts">
-    import { PUBLIC_API_URL } from "$env/static/public";
+    import "../app.css";
     import axios from "axios";
+    import SvelteMarkdown from "svelte-markdown";
 
-    let apiUrl =
-        import.meta.env.VITE_API_URL ??
-        PUBLIC_API_URL ??
-        "http://localhost:3001";
+    let apiUrl = "";
     let username: string = "";
     let model: string = "gemini";
     let language: string = "auto";
     let roastingResult: string = "";
     let status: string = "idle";
-    let apiKey:string = "";
+    let apiKey: string = "";
 
     async function fetchGithubData() {
         if (!username || status == "loading") return;
@@ -83,13 +81,14 @@
         try {
             // Send data to Gemini AI for roasting
             const geminiResponse = await axios.post<{ roasting: string }>(
-                apiUrl + "/roasting?username=" + username,
+                apiUrl + "/roasting",
                 {
+                    username: username,
                     jsonData: JSON.stringify(datas),
                     README: readmeResponse.data,
-                    model:model,
-                    language:language,
-                    apiKey:apiKey
+                    model: model,
+                    language: language,
+                    apiKey: apiKey,
                 },
             );
             roastingResult = geminiResponse.data.roasting;
@@ -98,7 +97,7 @@
             if (axios.isAxiosError(error)) {
                 //get response from error
                 var responseData = error.response?.data;
-                if(responseData != undefined && responseData.error){
+                if (responseData != undefined && responseData.error) {
                     roastingResult =
                         "Failed to fetch response, error in server : " +
                         responseData.error;
@@ -117,64 +116,133 @@
 
 <svelte:head>
     <title>GitHub Profile Roasting 🔥🔥🔥</title>
-    <meta
-        name="description"
-        content="Roasting Your GitHub Profile with AI"/>
+    <meta name="description" content="Roasting Your GitHub Profile with AI" />
 </svelte:head>
-<main>
+<main class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
     <div id="header">
-        <marquee style="color:red;">Siapkan mental anda sebelum menekan tombol submit, semua response digenerate oleh AI, bisa saja response yang diberikan sangat menyinggung anda.</marquee>
+        <marquee style="color:red;"
+            >Siapkan mental anda sebelum menekan tombol submit, semua response
+            digenerate oleh AI, bisa saja response yang diberikan sangat
+            menyinggung anda.</marquee
+        >
     </div>
-    <h1>GitHub Profile Roasting 🔥🔥🔥</h1>
-
-    <div>
-        <input
-            type="text"
-            bind:value={username}
-            placeholder="Enter GitHub username"
-        />
-        <button on:click={fetchGithubData}>Submit</button>
-    </div>
-    {#if status == "idle"}
-        <p>Enter a GitHub username to get started.</p>
-    {/if}
-    <br>
-    <details>
-        <summary>Setting</summary>
-        <div class="input-group">
-            <label for="language">Language</label>
-            <select bind:value={language} name="language" id="language">
-                <option value="auto">Auto</option>
-                <option value="english">English</option>
-                <option value="indonesia">Indonesia</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <label for="model">AI Model</label>
-            <select bind:value={model} name="model" id="model">
-                <option value="gemini">Gemini AI</option>
-                <option value="llama">LLama (Groq AI)</option>
-            </select>
-            <input type="password" bind:value={apiKey} placeholder="(Optional) API KEY...">
-        </div>
-    </details>
-
-    {#if status == "done"}
-        <h2>Roasting For {username}</h2>
-        <p>{roastingResult}</p>
-    {:else if status == "loading"}
-        <p>Loading...</p>
-    {/if}
     <div style="height: 100px;"></div>
-    <div id="footer">
-        <div>
-            <div>
-                <a href="https://roastlinkedin.my.id" target="_blank">RoastLinkedin</a>
-                <a href="https://roastwaifu.my.id" target="_blank">RoastWaifu</a>
+    <div>
+        <div
+            class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl"
+        >
+            <div class="p-8">
+                <h1
+                    class="block mt-1 text-2xl leading-tight font-medium text-black my-4"
+                >
+                    Roast Your GitHub Profile 🔥🔥🔥
+                </h1>
+                <div class="mb-4">
+                    <div>
+                        <label for="username" class="sr-only my-2">
+                            GitHub Username
+                        </label>
+                        <input
+                            type="text"
+                            autocomplete="off"
+                            name="username"
+                            id="username"
+                            class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2 px-4"
+                            bind:value={username}
+                            placeholder="Enter GitHub username"
+                        />
+                    </div>
+                    <button
+                        on:click={fetchGithubData}
+                        type="submit"
+                        class="mt-3 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                        Submit
+                    </button>
+                </div>
+
+                <details class="mb-4">
+                    <summary>Setting</summary>
+                    <div class="input-group mb-4">
+                        <label for="language" class="my-2">Language</label>
+                        <select
+                            bind:value={language}
+                            name="language"
+                            id="language"
+                            class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2 px-4"
+                        >
+                            <option value="auto">Auto</option>
+                            <option value="english">English</option>
+                            <option value="indonesia">Indonesia</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-4">
+                        <label for="model" class="my-2">AI Model</label>
+                        <select
+                            bind:value={model}
+                            name="model"
+                            id="model"
+                            class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2 px-4"
+                        >
+                            <option value="gemini">Gemini AI</option>
+                            <option value="llama">LLama (Groq AI)</option>
+                        </select>
+                        <input
+                            type="password"
+                            autocomplete="off"
+                            name="apiKey"
+                            class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2 px-4 mt-2"
+                            bind:value={apiKey}
+                            placeholder="(Optional) API KEY..."
+                        />
+                    </div>
+                </details>
+
+                {#if status == "done"}
+                    <div class="mt-6">
+                        <h2 class="text-lg font-semibold text-gray-900">
+                            Roasting For {username}
+                        </h2>
+                        <SvelteMarkdown source={roastingResult} />
+                    </div>
+                {:else if status == "loading"}
+                    <p>Loading...</p>
+                {/if}
+
+                <p class="text-center mt-4">&copy; bagusindrayana</p>
             </div>
-            <br>
-            <div class="btn-list">
-                <a href="https://trakteer.id/bagood" target="_blank"
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+    <div
+        id="footer"
+        class="fixed left-0 right-0 p-2 flex flex-col gap-2 text-center justify-center w-full bg-white bottom-0"
+    >
+        <div class="flex gap-2 justify-center">
+            <a
+                href="https://wallofdonations.my.id"
+                class="underline"
+                target="_blank"
+            >
+                WallOfDonations
+            </a>
+            <a
+                href="https://roastgithub.my.id"
+                class="underline"
+                target="_blank">RoastGithub</a
+            >
+            <a
+                href="https://roastlinkedin.my.id"
+                class="underline"
+                target="_blank">RoastLinkedin</a
+            >
+            <a href="https://roastwaifu.my.id" class="underline" target="_blank"
+                >RoastWaifu</a
+            >
+        </div>
+        <div class="flex justify-center gap-2 items-center">
+            <a href="https://trakteer.id/bagood" target="_blank"
                 ><img
                     id="wse-buttons-preview"
                     src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png?date=18-11-2023"
@@ -187,39 +255,19 @@
                     data-darkreader-inline-border-left=""
                 /></a
             >
-            <iframe src="https://ghbtns.com/github-btn.html?user=bagusindrayana&repo=roastgithub&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
-            </div>
+            <iframe
+                src="https://ghbtns.com/github-btn.html?user=bagusindrayana&repo=roastgithub&type=star&count=true&size=large"
+                frameborder="0"
+                scrolling="0"
+                width="170"
+                height="30"
+                title="GitHub"
+            ></iframe>
         </div>
-        
     </div>
 </main>
 
 <style>
-    main {
-        padding: 1em;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    input {
-        margin-right: 0.5em;
-        padding: 0.5em;
-    }
-    button {
-        padding: 0.5em;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin-bottom: 0.5em;
-    }
-    pre {
-        background: #f4f4f4;
-        padding: 1em;
-        overflow-x: auto;
-    }
-
     #header {
         display: flex;
         justify-content: center;
@@ -232,33 +280,5 @@
         padding: 16px;
         text-align: center;
         background-color: white;
-    }
-
-    #footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        padding: 16px;
-        text-align: center;
-        background-color: white;
-    }
-
-    .input-group {
-        margin-bottom: 16px;
-        display: flex;
-        gap: 6px;
-        flex-direction: column;
-    }
-
-    .btn-list {
-        display: flex;
-        gap: 6px;
-        justify-content: center;
-        align-items: center;
     }
 </style>
