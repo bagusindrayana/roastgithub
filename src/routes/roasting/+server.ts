@@ -4,7 +4,7 @@ import { Groq } from 'groq-sdk';
 import axios from 'axios';
 import { RateLimiter } from 'sveltekit-rate-limiter/server';
 
-import { GEMINI_API_KEY, GROQ_API_KEY } from '$env/static/private';
+import { GEMINI_API_KEY, GROQ_API_KEY, GEMINI_MODEL, GROQ_MODEL } from '$env/static/private';
 
 import { dev } from '$app/environment';
 const limiter = new RateLimiter({
@@ -17,7 +17,7 @@ async function generateContent(model:string, prompt:string, aiService:any) {
     if (model == "llama") {
         const chatCompletion = await aiService.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
-            model: 'llama-3.1-70b-versatile',
+            model: GROQ_MODEL,
         });
         return chatCompletion.choices[0].message.content;
     } else {
@@ -32,7 +32,7 @@ async function generateContent(model:string, prompt:string, aiService:any) {
             },
         ];
 
-        const modelAi = aiService.getGenerativeModel({ model: "gemini-1.5-flash", safetySettings });
+        const modelAi = aiService.getGenerativeModel({ model: GEMINI_MODEL, safetySettings });
         const result = await modelAi.generateContent(prompt);
         const response = await result.response;
         return response.text();
